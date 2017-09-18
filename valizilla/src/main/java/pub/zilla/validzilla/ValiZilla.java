@@ -38,7 +38,7 @@ public class ValiZilla {
         for (ValiModel model : wapper.getValiModel()) {
             try {
                 Class fieldType = model.getField().getType();
-                if (textInputLayout.getClass().isAssignableFrom(fieldType)) {//if is TextInputLayout or extends from TextInputLayout.
+                if (textInputLayout.isAssignableFrom(fieldType)) {//if is TextInputLayout or extends from TextInputLayout.
                     TextInputLayout targetField = (TextInputLayout) model.getField().get(target);
                     String result = targetField.getEditText().getText().toString();//result
                     List<AnnoModel> annoModels = model.getAnnoModels();
@@ -96,18 +96,17 @@ public class ValiZilla {
             Field[] cFields = c.getFields();
             NotNull notNull;
             Reg reg;
-            AnnoModel annoModel;
             for (Field field : cFields) {
                 notNull = field.getAnnotation(NotNull.class);
                 reg = field.getAnnotation(Reg.class);
                 if (notNull != null || reg != null) {
                     ValiModel valiModel = new ValiModel(field);
                     if (notNull != null) {
-                        annoModel = new AnnoModel(notNull.error(), null);
+                        AnnoModel annoModel = new AnnoModel(notNull.error(), null);
                         valiModel.addAnnoModel(annoModel);
                     }
                     if (reg != null) {
-                        annoModel = new AnnoModel(notNull.error(), reg.reg());
+                        AnnoModel annoModel = new AnnoModel(reg.error(), reg.reg());
                         valiModel.addAnnoModel(annoModel);
                     }
                     wapper.addValiModel(valiModel);

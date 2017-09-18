@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Reg validation
  * Created by zilla on 9/15/17.
  */
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Reg {
     /**

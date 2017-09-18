@@ -1,6 +1,7 @@
 # ValidZilla
-Android InputLayout validation
+Android TextInputLayout validation
 
+[![](https://jitpack.io/v/zillachan/ValidZilla.svg)](https://jitpack.io/#zillachan/ValidZilla)
 ## How to use
 
 ```

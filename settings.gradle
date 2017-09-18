@@ -1,1 +1,1 @@
-include ':valizilla'
+include ':valizilla', ':example'
