@@ -17,7 +17,7 @@ public @interface NotNull {
      *
      * @return
      */
-//    int value();
+    int value();
 
     /**
      * Error message

@@ -1,9 +1,6 @@
 package pub.zilla.validzilla.model;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Validate field model
@@ -11,8 +8,12 @@ import java.util.List;
  */
 
 public class ValiModel {
+    private int order;
+    private int error;
+    private String reg;
+
     private Field field;
-    private List<AnnoModel> annoModels;
+
 
     public ValiModel() {
 
@@ -22,9 +23,42 @@ public class ValiModel {
         this.field = field;
     }
 
-    public ValiModel(Field field, List<AnnoModel> annoModels) {
+    /**
+     * constructor
+     * @param order
+     * @param error
+     * @param reg
+     * @param field
+     */
+    public ValiModel(int order, int error, String reg, Field field) {
+        this.order = order;
+        this.error = error;
+        this.reg = reg;
         this.field = field;
-        this.annoModels = annoModels;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
+    public int getError() {
+        return error;
+    }
+
+    public void setError(int error) {
+        this.error = error;
+    }
+
+    public String getReg() {
+        return reg;
+    }
+
+    public void setReg(String reg) {
+        this.reg = reg;
     }
 
     public Field getField() {
@@ -35,27 +69,13 @@ public class ValiModel {
         this.field = field;
     }
 
-    public List<AnnoModel> getAnnoModels() {
-        return annoModels;
-    }
-
-    public void setAnnoModels(List<AnnoModel> annoModels) {
-        this.annoModels = annoModels;
-    }
-
-    public void addAnnoModel(AnnoModel annoModel) {
-        if (annoModels == null) {
-            annoModels = new ArrayList<>();
-        }
-        annoModels.add(annoModel);
-    }
-
-
     @Override
     public String toString() {
         return "ValiModel{" +
-                "field=" + field +
-                ", annoModels=" + annoModels +
+                "order=" + order +
+                ", error=" + error +
+                ", reg='" + reg + '\'' +
+                ", field=" + field +
                 '}';
     }
 }

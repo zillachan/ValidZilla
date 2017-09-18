@@ -6,15 +6,14 @@ import android.text.TextUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
 import pub.zilla.validzilla.an.NotNull;
 import pub.zilla.validzilla.an.Reg;
 import pub.zilla.validzilla.an.ValiSuccess;
-import pub.zilla.validzilla.model.AnnoModel;
 import pub.zilla.validzilla.model.ValiModel;
 import pub.zilla.validzilla.model.ValiWapper;
 
@@ -35,27 +34,31 @@ public class ValiZilla {
             e.printStackTrace();
         }
         if (textInputLayout == null) return;
-        for (ValiModel model : wapper.getValiModel()) {
+        List<ValiModel> models = wapper.getValiModel();
+        Collections.sort(models, new Comparator<ValiModel>() {
+            @Override
+            public int compare(ValiModel o1, ValiModel o2) {
+                return o1.getOrder() - o2.getOrder();
+            }
+        });
+        for (ValiModel model : models) {
             try {
                 Class fieldType = model.getField().getType();
                 if (textInputLayout.isAssignableFrom(fieldType)) {//if is TextInputLayout or extends from TextInputLayout.
                     TextInputLayout targetField = (TextInputLayout) model.getField().get(target);
                     String result = targetField.getEditText().getText().toString();//result
-                    List<AnnoModel> annoModels = model.getAnnoModels();
-                    for (AnnoModel annoModel : annoModels) {
-                        if (TextUtils.isEmpty(annoModel.getReg())) {//not null check fail
-                            if (TextUtils.isEmpty(result)) {
-                                targetField.setError(targetField.getContext().getString(annoModel.getError()));
-                                return;
-                            } else {
-                                targetField.setError("");
-                            }
-                        } else if (!result.matches(annoModel.getReg())) {// reg check fail;
-                            targetField.setError(targetField.getContext().getString(annoModel.getError()));
+                    if (TextUtils.isEmpty(model.getReg())) {//not null check fail
+                        if (TextUtils.isEmpty(result)) {
+                            targetField.setError(targetField.getContext().getString(model.getError()));
                             return;
                         } else {
                             targetField.setError("");
                         }
+                    } else if (!result.matches(model.getReg())) {// reg check fail;
+                        targetField.setError(targetField.getContext().getString(model.getError()));
+                        return;
+                    } else {
+                        targetField.setError("");
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -71,7 +74,6 @@ public class ValiZilla {
                 e.printStackTrace();
             }
         }
-
     }
 
     /**
@@ -100,16 +102,14 @@ public class ValiZilla {
                 notNull = field.getAnnotation(NotNull.class);
                 reg = field.getAnnotation(Reg.class);
                 if (notNull != null || reg != null) {
-                    ValiModel valiModel = new ValiModel(field);
                     if (notNull != null) {
-                        AnnoModel annoModel = new AnnoModel(notNull.error(), null);
-                        valiModel.addAnnoModel(annoModel);
+                        ValiModel valiModel = new ValiModel(notNull.value(), notNull.error(), null, field);
+                        wapper.addValiModel(valiModel);
                     }
                     if (reg != null) {
-                        AnnoModel annoModel = new AnnoModel(reg.error(), reg.reg());
-                        valiModel.addAnnoModel(annoModel);
+                        ValiModel valiModel = new ValiModel(reg.value(), reg.error(), reg.reg(), field);
+                        wapper.addValiModel(valiModel);
                     }
-                    wapper.addValiModel(valiModel);
                 }
             }
             //Method
