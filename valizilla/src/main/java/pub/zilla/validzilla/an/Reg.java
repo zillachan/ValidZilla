@@ -17,7 +17,7 @@ public @interface Reg {
      *
      * @return
      */
-    int value();
+    int order();
 
     /**
      * Error message

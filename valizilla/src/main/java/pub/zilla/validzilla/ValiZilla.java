@@ -103,11 +103,11 @@ public class ValiZilla {
                 reg = field.getAnnotation(Reg.class);
                 if (notNull != null || reg != null) {
                     if (notNull != null) {
-                        ValiModel valiModel = new ValiModel(notNull.value(), notNull.error(), null, field);
+                        ValiModel valiModel = new ValiModel(notNull.order(), notNull.error(), null, field);
                         wapper.addValiModel(valiModel);
                     }
                     if (reg != null) {
-                        ValiModel valiModel = new ValiModel(reg.value(), reg.error(), reg.reg(), field);
+                        ValiModel valiModel = new ValiModel(reg.order(), reg.error(), reg.reg(), field);
                         wapper.addValiModel(valiModel);
                     }
                 }

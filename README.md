@@ -19,13 +19,13 @@ Example
 ```
 public class MainActivity extends AppCompatActivity {
 
-    @NotNull(value = 1, error = R.string.input_need)
-    @Reg(value = 2, error = R.string.reg_error, reg = "^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$")
+    @NotNull(order = 1, error = R.string.input_need)
+    @Reg(order = 2, error = R.string.reg_error, reg = "^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$")
     @BindView(R.id.inputLayout)
     TextInputLayout inputLayout;
 
-    @NotNull(value = 3, error = R.string.input_need)
-    @Reg(value = 4, error = R.string.reg_error, reg = "^[0-9][0-9]{5}$")
+    @NotNull(order = 3, error = R.string.input_need)
+    @Reg(order = 4, error = R.string.reg_error, reg = "^[0-9][0-9]{5}$")
     @BindView(R.id.zipcodeLayout)
     TextInputLayout zipcodeLayout;
 
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.vali_success, Toast.LENGTH_LONG).show();
     }
 }
+
 
 ```
 ## Step1
