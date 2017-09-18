@@ -10,7 +10,7 @@ repositories {
         maven { url "https://jitpack.io" }
    }
    dependencies {
-         compile 'com.github.zillachan:ValiZilla:1.0'
+         compile 'com.github.zillachan:ValiZilla:1.1.1'
    }
 ```
 
@@ -19,10 +19,15 @@ Example
 ```
 public class MainActivity extends AppCompatActivity {
 
-    @Reg(error = R.string.reg_error,reg = "^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$")
-    @NotNull(error = R.string.input_need)
+    @NotNull(value = 1, error = R.string.input_need)
+    @Reg(value = 2, error = R.string.reg_error, reg = "^0{0,1}(13[0-9]|15[7-9]|153|156|18[7-9])[0-9]{8}$")
     @BindView(R.id.inputLayout)
     TextInputLayout inputLayout;
+
+    @NotNull(value = 3, error = R.string.input_need)
+    @Reg(value = 4, error = R.string.reg_error, reg = "^[0-9][0-9]{5}$")
+    @BindView(R.id.zipcodeLayout)
+    TextInputLayout zipcodeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @ValiSuccess
-    void onValiSuccess(){
-        Toast.makeText(this,R.string.vali_success,Toast.LENGTH_LONG).show();
+    void onValiSuccess() {
+        Toast.makeText(this, R.string.vali_success, Toast.LENGTH_LONG).show();
     }
 }
 
