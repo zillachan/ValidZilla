@@ -13,7 +13,9 @@ repositories {
          compile 'com.github.zillachan:ValiZilla:1.0'
    }
 ```
+
 Example
+
 ```
 public class MainActivity extends AppCompatActivity {
 
@@ -50,4 +52,8 @@ Inject your callback method with @ValidSuccess
 ## Setp3
 
 Call ValiZilla.vali(Object target);
+
+# Screenshots
+
+![Image](https://raw.githubusercontent.com/zillachan/ValidZilla/master/images/valizilla.png)
 
