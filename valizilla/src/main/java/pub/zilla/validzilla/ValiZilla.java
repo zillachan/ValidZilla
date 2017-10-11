@@ -95,7 +95,7 @@ public class ValiZilla {
         if (wapper == null) {
             wapper = new ValiWapper();
             //Field
-            Field[] cFields = c.getFields();
+            Field[] cFields = c.getDeclaredFields();
             NotNull notNull;
             Reg reg;
             for (Field field : cFields) {
