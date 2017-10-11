@@ -45,6 +45,8 @@ public class ValiZilla {
             try {
                 Class fieldType = model.getField().getType();
                 if (textInputLayout.isAssignableFrom(fieldType)) {//if is TextInputLayout or extends from TextInputLayout.
+                    Field field = model.getField();
+                    field.setAccessible(true);
                     TextInputLayout targetField = (TextInputLayout) model.getField().get(target);
                     String result = targetField.getEditText().getText().toString();//result
                     if (TextUtils.isEmpty(model.getReg())) {//not null check fail
@@ -99,6 +101,7 @@ public class ValiZilla {
             NotNull notNull;
             Reg reg;
             for (Field field : cFields) {
+                field.setAccessible(true);
                 notNull = field.getAnnotation(NotNull.class);
                 reg = field.getAnnotation(Reg.class);
                 if (notNull != null || reg != null) {
