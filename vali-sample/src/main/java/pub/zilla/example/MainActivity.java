@@ -8,10 +8,10 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import pub.zilla.validzilla.ValiZilla;
-import pub.zilla.validzilla.an.NotNull;
-import pub.zilla.validzilla.an.Reg;
-import pub.zilla.validzilla.an.ValiSuccess;
+import pub.zilla.vali.annotation.NotNull;
+import pub.zilla.vali.annotation.Reg;
+import pub.zilla.vali.annotation.ValiSuccess;
+import pub.zilla.vali.api.ValiZilla;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button)
     public void onViewClicked() {
-        ValiZilla.vali(this);
+        ValiZilla.validate(this);
     }
 
     @ValiSuccess

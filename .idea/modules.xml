@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ValidZilla.iml" filepath="$PROJECT_DIR$/ValidZilla.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vali-annotation/vali-annotation.iml" filepath="$PROJECT_DIR$/vali-annotation/vali-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vali-api/vali-api.iml" filepath="$PROJECT_DIR$/vali-api/vali-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vali-compiler/vali-compiler.iml" filepath="$PROJECT_DIR$/vali-compiler/vali-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vali-sample/vali-sample.iml" filepath="$PROJECT_DIR$/vali-sample/vali-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/valizilla/valizilla.iml" filepath="$PROJECT_DIR$/valizilla/valizilla.iml" />
     </modules>
   </component>

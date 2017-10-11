@@ -1,1 +1,1 @@
-include ':valizilla', ':example'
+include ':valizilla', ':vali-sample', ':vali-annotation', ':vali-compiler', ':vali-api'
