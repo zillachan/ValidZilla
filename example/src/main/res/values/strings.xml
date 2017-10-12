@@ -4,6 +4,7 @@
     <string name="reg_error">reg error</string>
     <string name="vali_success">Validate success.</string>
     <string name="validate">Validate</string>
+    <string name="validate_first">Validate First</string>
     <string name="phone_number">Phone Number</string>
     <string name="zip_code">Zip Code</string>
 </resources>

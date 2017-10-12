@@ -3,6 +3,7 @@ package pub.zilla.example;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -32,13 +33,25 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.button)
-    public void onViewClicked() {
-        ValiZilla.vali(this);
+    @OnClick({R.id.button, R.id.button_first})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.button:
+                ValiZilla.vali(this);
+                break;
+            case R.id.button_first:
+                ValiZilla.vali(this, 1, 2);
+                break;
+        }
     }
 
     @ValiSuccess
     void onValiSuccess() {
+        Toast.makeText(this, R.string.vali_success, Toast.LENGTH_LONG).show();
+    }
+
+    @ValiSuccess
+    void onValiSuccess(int... i) {
         Toast.makeText(this, R.string.vali_success, Toast.LENGTH_LONG).show();
     }
 }

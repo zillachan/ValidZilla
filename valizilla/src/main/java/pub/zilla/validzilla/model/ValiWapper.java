@@ -1,6 +1,5 @@
 package pub.zilla.validzilla.model;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class ValiWapper {
     private List<ValiModel> valiModels;
-    private Method method;
+    private List<MethodModel> methods;
 
     public ValiWapper() {
 
@@ -24,12 +23,15 @@ public class ValiWapper {
         this.valiModels = valiModel;
     }
 
-    public Method getMethod() {
-        return method;
+    public void addMethod(MethodModel method) {
+        if (methods == null) {
+            methods = new ArrayList<>();
+        }
+        methods.add(method);
     }
 
-    public void setMethod(Method method) {
-        this.method = method;
+    public List<MethodModel> getMethods() {
+        return methods;
     }
 
     public void addValiModel(ValiModel model) {
@@ -43,7 +45,7 @@ public class ValiWapper {
     public String toString() {
         return "ValiWapper{" +
                 "valiModels=" + valiModels +
-                ", method=" + method +
+                ", methods=" + methods +
                 '}';
     }
 }
