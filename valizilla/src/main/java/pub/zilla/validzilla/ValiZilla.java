@@ -96,9 +96,9 @@ public class ValiZilla {
                 for (MethodModel methodModel : methodModels) {
                     if (methodModel.getAnnotation().annotationType().equals(annotationClass)) {
                         Class<?>[] parameterTypes = methodModel.getMethod().getParameterTypes();
-                        if (parameterTypes.length == 0) {
+                        if (parameterTypes.length == 0 && orders == null) {
                             methodModel.getMethod().invoke(target);
-                        } else {
+                        } else if (orders != null && parameterTypes.length != 0) {
                             methodModel.getMethod().invoke(target, orders);
                         }
                     }
