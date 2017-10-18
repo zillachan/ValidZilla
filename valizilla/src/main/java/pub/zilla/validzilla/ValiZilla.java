@@ -3,11 +3,9 @@ package pub.zilla.validzilla;
 import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -61,18 +59,18 @@ public class ValiZilla {
                         String result = targetField.getEditText().getText().toString();//result
                         if (TextUtils.isEmpty(model.getReg())) {//not null check fail
                             if (TextUtils.isEmpty(result)) {
-                                targetField.setError(targetField.getContext().getString(model.getError()));
+                                setError(targetField, targetField.getContext().getString(model.getError()));
                                 invokeSuccess(target, ValiFailed.class, orders);
                                 return;
                             } else {
-                                targetField.setError("");
+                                setError(targetField, null);
                             }
                         } else if (!result.matches(model.getReg())) {// reg check fail;
-                            targetField.setError(targetField.getContext().getString(model.getError()));
+                            setError(targetField, targetField.getContext().getString(model.getError()));
                             invokeSuccess(target, ValiFailed.class, orders);
                             return;
                         } else {
-                            targetField.setError("");
+                            setError(targetField, null);
                         }
                     }
                 } catch (IllegalAccessException e) {
@@ -172,5 +170,15 @@ public class ValiZilla {
             cache.put(c, wapper);
         }
         return wapper;
+    }
+
+    private static void setError(TextInputLayout textInputLayout, String message) {
+        if (TextUtils.isEmpty(message)) {
+            textInputLayout.setError(null);
+            textInputLayout.setErrorEnabled(false);
+        } else {
+            textInputLayout.setError(message);
+            textInputLayout.setErrorEnabled(true);
+        }
     }
 }
